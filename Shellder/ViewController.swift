@@ -32,6 +32,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(textField: UITextField) {
         // Update the label text
         label.text = textField.text
+        textField.text = ""
     }
     
     // MARK: Actions
