@@ -93,14 +93,32 @@ class ActivityTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowDetail" {
+            let activityDetailViewController = segue.destinationViewController as! MapViewController
+            
+            // Get the cell that generated this segue.
+            if let selectedActivityCell = sender as? ActivityTableViewCell {
+                let indexPath = tableView.indexPathForCell(selectedActivityCell)!
+                let selectedActivity = activities[indexPath.row]
+                activityDetailViewController.activity = selectedActivity
+            }
+        }
+        else if segue.identifier == "AddItem" {
+            //print("Adding new activity.")
+        }
     }
-    */
+    
+    @IBAction func unwindToActivityList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.sourceViewController as? ActivityViewController, activity = sourceViewController.activity {
+            // Add a new activity.
+            let newIndexPath = NSIndexPath(forRow: activities.count, inSection: 0)
+            activities.append(activity)
+            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+        }
+    }
 
 }
