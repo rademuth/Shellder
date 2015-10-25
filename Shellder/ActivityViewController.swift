@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ActivityViewController.swift
 //  Shellder
 //
 //  Created by Robert Demuth on 10/20/15.
@@ -8,12 +8,18 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ActivityViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var label: UILabel!
 
+    /*
+    This value is either passed by `ActivityTableViewController` in `prepareForSegue(_:sender:)`
+    or constructed as part of adding a new activity.
+    */
+    var activity: Activity?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib
