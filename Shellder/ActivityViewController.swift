@@ -11,8 +11,7 @@ import UIKit
 class ActivityViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
-    @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
 
     /*
     This value is either passed by `ActivityTableViewController` in `prepareForSegue(_:sender:)`
@@ -25,7 +24,7 @@ class ActivityViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view, typically from a nib
         
         // Handle the text field's user input through delegate callbacks
-        textField.delegate = self
+        //textField.delegate = self
     }
     
     // MARK: UITextFieldDelegate
@@ -36,15 +35,10 @@ class ActivityViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        // Update the label text
-        label.text = textField.text
-        textField.text = ""
+        
     }
     
     // MARK: Actions
-    @IBAction func setDefaultLabelText(sender: UIButton) {
-        label.text = "Default Text"
-    }
     
 
 }
