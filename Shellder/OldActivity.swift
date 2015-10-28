@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Activity: NSObject, NSCoding {
+class OldActivity: NSObject, NSCoding {
     
     // MARK: Properties
     var id: Int

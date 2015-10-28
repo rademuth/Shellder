@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ActivityViewController: UIViewController, UITextFieldDelegate {
     
@@ -16,10 +17,13 @@ class ActivityViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var xCoorTextField: UITextField!
     @IBOutlet weak var yCoorTextField: UITextField!
 
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    
     /*
     This value is either passed by `ActivityTableViewController` in `prepareForSegue(_:sender:)`
     or constructed as part of adding a new activity.
     */
+    var size: Int?
     var activity: Activity?
     
     override func viewDidLoad() {
@@ -73,7 +77,24 @@ class ActivityViewController: UIViewController, UITextFieldDelegate {
             let yCoorText = yCoorTextField.text ?? "0"
             
             // Set the activity to be passed to ActivityTableViewController after the unwind segue.
+            /*
             activity = Activity(id: 0, title: title, latitude: NSString(string: xCoorText).floatValue, longitude: NSString(string: yCoorText).floatValue, photo: nil, complete: false)
+            */
+            activity = NSEntityDescription.insertNewObjectForEntityForName("Activity", inManagedObjectContext: managedObjectContext) as? Activity
+            
+            activity!.id = size! + 1
+            activity!.title = title
+            activity!.latitude = NSString(string: xCoorText).floatValue
+            activity!.longitude = NSString(string: yCoorText).floatValue
+            activity!.photo = nil
+            activity!.complete = false
+            
+            do {
+                try managedObjectContext.save()
+            } catch let error as NSError{
+                print("Failed to save the new activity. Error = \(error)")
+            }
+            
         }
     }
     

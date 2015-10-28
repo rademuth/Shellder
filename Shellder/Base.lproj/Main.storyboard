@@ -91,7 +91,6 @@
         <!--Map View Controller-->
         <scene sceneID="C5j-og-JjJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5DA-EV-an5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="53W-Jd-cVS" customClass="MapViewController" customModule="Shellder" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pb3-6U-hV0"/>
@@ -145,6 +144,7 @@
                         <outlet property="mapView" destination="f6H-Ew-sk5" id="ZyZ-ib-qko"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5DA-EV-an5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="M9h-pU-8Jp">
                     <connections>
                         <action selector="takePicture:" destination="53W-Jd-cVS" id="83Y-C8-f4r"/>

@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class ActivityTableViewController: UITableViewController {
 
     // MARK: Properties
     
-    var activities = [Activity]()
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
+    var activities = [Activity]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +25,25 @@ class ActivityTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        loadSavedActivities()
     }
 
-    func loadSampleMeals() {
+    func loadSavedActivities() {
+        // Create the fetch request
+        let fetchRequest = NSFetchRequest(entityName: "Activity")
+        let idSort = NSSortDescriptor(key: "id", ascending: true)
+        fetchRequest.sortDescriptors = [idSort]
         
+        // Execute the fetch request on the context
+        do {
+            let savedActivities = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Activity]
+            for activity in savedActivities {
+                activities.append(activity)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,7 +69,7 @@ class ActivityTableViewController: UITableViewController {
         // Fetches the appropriate meal for the data source layout.
         let activity = activities[indexPath.row]
         
-        cell.idLabel.text = String(activity.id)
+        cell.idLabel.text = activity.id?.stringValue
         cell.titleLabel.text = activity.title
         
         return cell
@@ -98,17 +115,21 @@ class ActivityTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowDetail" {
-            let activityDetailViewController = segue.destinationViewController as! MapViewController
+            let mapViewController = segue.destinationViewController as! MapViewController
             
             // Get the cell that generated this segue.
             if let selectedActivityCell = sender as? ActivityTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedActivityCell)!
                 let selectedActivity = activities[indexPath.row]
-                activityDetailViewController.activity = selectedActivity
+                mapViewController.activity = selectedActivity
             }
         }
         else if segue.identifier == "AddItem" {
-            //print("Adding new activity.")
+            let navigationViewController = segue.destinationViewController as! UINavigationController
+            let activityViewController = navigationViewController.viewControllers[0] as! ActivityViewController
+            
+            // Set the size variable in the ActivityViewController
+            activityViewController.size = activities.count
         }
     }
     
