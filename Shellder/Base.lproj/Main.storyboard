@@ -186,7 +186,7 @@
                                 <connections>
                                     <outlet property="idLabel" destination="9OQ-m3-uRo" id="kAg-wF-bzj"/>
                                     <outlet property="titleLabel" destination="ix7-oh-nVT" id="SnI-PJ-MF6"/>
-                                    <segue destination="53W-Jd-cVS" kind="show" id="ZZE-Qc-Xrh"/>
+                                    <segue destination="53W-Jd-cVS" kind="show" identifier="ShowDetail" id="ZZE-Qc-Xrh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

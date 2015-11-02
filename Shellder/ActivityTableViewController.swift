@@ -88,8 +88,16 @@ class ActivityTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            activities.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            managedObjectContext.deleteObject(activities[indexPath.row]) // Delete from core data
+            activities.removeAtIndex(indexPath.row) // Delete from array
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade) // Delete from table view
+            
+            do {
+                try managedObjectContext.save()
+            } catch let error as NSError{
+                print("Failed to delete the old activity. Error = \(error)")
+            }
+            
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -115,16 +123,19 @@ class ActivityTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowDetail" {
+            print("ShowDetail --> MapViewController")
             let mapViewController = segue.destinationViewController as! MapViewController
             
             // Get the cell that generated this segue.
             if let selectedActivityCell = sender as? ActivityTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedActivityCell)!
                 let selectedActivity = activities[indexPath.row]
+                // Set the activity in the MapViewController
                 mapViewController.activity = selectedActivity
             }
         }
         else if segue.identifier == "AddItem" {
+            print("AddItem --> ActivityViewController")
             let navigationViewController = segue.destinationViewController as! UINavigationController
             let activityViewController = navigationViewController.viewControllers[0] as! ActivityViewController
             

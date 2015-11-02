@@ -8,15 +8,18 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: Properties
+    
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var imageView: UIImageView!
 
-
-    var activity: Activity?
+    var activity: Activity? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,16 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         // Do any additional setup after loading the view.
         imageView.hidden = true
         mapView.hidden = false
+        
+        print("MapViewController: viewDidLoad()")
+        
+        if activity?.photo != nil {
+            print("Found a saved image")
+            imageView.image = UIImage(data: (activity?.photo)!)
+        } else {
+            print("Use the default photo")
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +44,6 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -55,6 +67,14 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         // Set photoImageView to display the selected image.
         imageView.image = selectedImage
+        // Save the image to core data
+        activity?.photo = UIImagePNGRepresentation(selectedImage)
+        
+        do {
+            try managedObjectContext.save()
+        } catch let error as NSError{
+            print("Failed to save the new photo. Error = \(error)")
+        }
         
         // Dismiss the picker.
         dismissViewControllerAnimated(true, completion: nil)
