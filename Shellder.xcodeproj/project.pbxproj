@@ -19,6 +19,7 @@
 		3ECB4F731BDD355D0000A61F /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECB4F721BDD355D0000A61F /* ActivityViewController.swift */; };
 		3EDAB1931BE807AE00B1B26F /* Activity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDAB1911BE807AE00B1B26F /* Activity+CoreDataProperties.swift */; };
 		3EDAB1941BE807AE00B1B26F /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDAB1921BE807AE00B1B26F /* Activity.swift */; };
+		3EDAB1961BE81EA100B1B26F /* CheckControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDAB1951BE81EA100B1B26F /* CheckControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		3ECB4F721BDD355D0000A61F /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		3EDAB1911BE807AE00B1B26F /* Activity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Activity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3EDAB1921BE807AE00B1B26F /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		3EDAB1951BE81EA100B1B26F /* CheckControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				3E71B5E91BD6CD6A0011353C /* Info.plist */,
 				3E71B5EF1BD6D7CD0011353C /* MapViewController.swift */,
 				3E71B5F11BD6DB800011353C /* OldActivity.swift */,
+				3EDAB1951BE81EA100B1B26F /* CheckControl.swift */,
 			);
 			path = Shellder;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 				3ECB4F731BDD355D0000A61F /* ActivityViewController.swift in Sources */,
 				3EDAB1931BE807AE00B1B26F /* Activity+CoreDataProperties.swift in Sources */,
 				3ECB4F711BDD24030000A61F /* ActivityTableViewController.swift in Sources */,
+				3EDAB1961BE81EA100B1B26F /* CheckControl.swift in Sources */,
 				3ECB4F6F1BDD1F870000A61F /* ActivityTableViewCell.swift in Sources */,
 				3E71B5F01BD6D7CD0011353C /* MapViewController.swift in Sources */,
 				3E6EACA81BE170390036AAEF /* Shellder.xcdatamodeld in Sources */,
