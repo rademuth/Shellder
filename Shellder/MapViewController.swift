@@ -16,19 +16,27 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var checkControl: CheckControl!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var imageView: UIImageView!
-
+    
     var activity: Activity? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         imageView.hidden = true
         mapView.hidden = false
         
         print("MapViewController: viewDidLoad()")
+        
+        idLabel.text = activity?.id?.stringValue
+        titleLabel.text = activity?.title
+        checkControl.checked = (activity?.complete?.boolValue)!
         
         if activity?.photo != nil {
             print("Found a saved image")
@@ -53,6 +61,10 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func cancel(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
     // MARK: UIImagePickerControllerDelegate
     
@@ -67,14 +79,6 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         // Set photoImageView to display the selected image.
         imageView.image = selectedImage
-        // Save the image to core data
-        activity?.photo = UIImagePNGRepresentation(selectedImage)
-        
-        do {
-            try managedObjectContext.save()
-        } catch let error as NSError{
-            print("Failed to save the new photo. Error = \(error)")
-        }
         
         // Dismiss the picker.
         dismissViewControllerAnimated(true, completion: nil)
@@ -111,5 +115,21 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         }
     }
     
+    // This method lets you configure a view controller before it's presented.
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if saveButton === sender {
+            // Save the image
+            activity?.photo = UIImagePNGRepresentation(imageView.image!)
+            
+            // Save the state of the checkbox
+            activity?.complete = checkControl.checked
+            
+            do {
+                try managedObjectContext.save()
+            } catch let error as NSError{
+                print("Failed to save the new photo. Error = \(error)")
+            }
+        }
+    }
     
 }

@@ -13,6 +13,7 @@ class ActivityTableViewCell: UITableViewCell {
     // MARK: Properties
     @IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var checkControl: CheckControl!
     
     override func awakeFromNib() {
         super.awakeFromNib()

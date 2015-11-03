@@ -77,9 +77,6 @@ class ActivityViewController: UIViewController, UITextFieldDelegate {
             let yCoorText = yCoorTextField.text ?? "0"
             
             // Set the activity to be passed to ActivityTableViewController after the unwind segue.
-            /*
-            activity = Activity(id: 0, title: title, latitude: NSString(string: xCoorText).floatValue, longitude: NSString(string: yCoorText).floatValue, photo: nil, complete: false)
-            */
             activity = NSEntityDescription.insertNewObjectForEntityForName("Activity", inManagedObjectContext: managedObjectContext) as? Activity
             
             activity!.id = size! + 1

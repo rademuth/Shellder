@@ -74,6 +74,7 @@ class ActivityTableViewController: UITableViewController {
         
         cell.idLabel.text = activity.id?.stringValue
         cell.titleLabel.text = activity.title
+        cell.checkControl.checked = (activity.complete?.boolValue)!
         
         return cell
     }
@@ -124,8 +125,9 @@ class ActivityTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowDetail" {
             print("ShowDetail --> MapViewController")
-            let mapViewController = segue.destinationViewController as! MapViewController
-            
+            let navigationViewController = segue.destinationViewController as! UINavigationController
+            let mapViewController = navigationViewController.viewControllers[0] as! MapViewController
+
             // Get the cell that generated this segue.
             if let selectedActivityCell = sender as? ActivityTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedActivityCell)!
@@ -146,10 +148,18 @@ class ActivityTableViewController: UITableViewController {
     
     @IBAction func unwindToActivityList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? ActivityViewController, activity = sourceViewController.activity {
+            print("Unwound from activity view controller")
             // Add a new activity.
             let newIndexPath = NSIndexPath(forRow: activities.count, inSection: 0)
             activities.append(activity)
             tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+        }
+        if let sourceViewController = sender.sourceViewController as? MapViewController, activity = sourceViewController.activity {
+            print("Unwound from map view controller")
+            // Update the table view cell
+            let oldIndexPath = NSIndexPath(forRow: (activity.id?.integerValue)!, inSection: 0)
+            activities[(activity.id?.integerValue)! - 1].complete = activity.complete
+            tableView.reloadRowsAtIndexPaths([oldIndexPath], withRowAnimation: .Automatic)
         }
     }
 
