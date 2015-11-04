@@ -12,7 +12,7 @@ class CheckControl: UIView {
 
     // MARK: Properties
     
-    var checked = false
+    var checked = 0
     var button = UIButton()
     
     // MARK: Initialization
@@ -45,15 +45,23 @@ class CheckControl: UIView {
     
     // MARK: Button Action
     
-    
-    
     func checkboxTapped(button: UIButton) {
-        checked = !checked
+        if checked == 0 {
+            print("Checked the button")
+            checked = 1
+        } else if checked == 1 {
+            print("Unchecked the button")
+            checked = 0
+        }
         updateCheckboxSelectionState()
     }
     
     func updateCheckboxSelectionState() {
-        button.selected = checked
+        if checked == 0 {
+            button.selected = false
+        } else if checked == 1 {
+            button.selected = true
+        }
     }
 
 }

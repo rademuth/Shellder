@@ -84,7 +84,7 @@ class ActivityViewController: UIViewController, UITextFieldDelegate {
             activity!.latitude = NSString(string: xCoorText).floatValue
             activity!.longitude = NSString(string: yCoorText).floatValue
             activity!.photo = nil
-            activity!.complete = false
+            activity!.complete = 0
             
             do {
                 try managedObjectContext.save()

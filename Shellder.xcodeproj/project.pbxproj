@@ -20,6 +20,7 @@
 		3EDAB1931BE807AE00B1B26F /* Activity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDAB1911BE807AE00B1B26F /* Activity+CoreDataProperties.swift */; };
 		3EDAB1941BE807AE00B1B26F /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDAB1921BE807AE00B1B26F /* Activity.swift */; };
 		3EDAB1961BE81EA100B1B26F /* CheckControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDAB1951BE81EA100B1B26F /* CheckControl.swift */; };
+		3EED08F81BE99C9C007684DA /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED08F71BE99C9C007684DA /* Annotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		3EDAB1911BE807AE00B1B26F /* Activity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Activity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3EDAB1921BE807AE00B1B26F /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		3EDAB1951BE81EA100B1B26F /* CheckControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckControl.swift; sourceTree = "<group>"; };
+		3EED08F71BE99C9C007684DA /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				3E71B5EF1BD6D7CD0011353C /* MapViewController.swift */,
 				3E71B5F11BD6DB800011353C /* OldActivity.swift */,
 				3EDAB1951BE81EA100B1B26F /* CheckControl.swift */,
+				3EED08F71BE99C9C007684DA /* Annotation.swift */,
 			);
 			path = Shellder;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 				3E71B5F01BD6D7CD0011353C /* MapViewController.swift in Sources */,
 				3E6EACA81BE170390036AAEF /* Shellder.xcdatamodeld in Sources */,
 				3EDAB1941BE807AE00B1B26F /* Activity.swift in Sources */,
+				3EED08F81BE99C9C007684DA /* Annotation.swift in Sources */,
 				3E71B5DE1BD6CD690011353C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

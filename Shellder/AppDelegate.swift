@@ -1,3 +1,8 @@
+
+
+
+
+
 //
 //  AppDelegate.swift
 //  Shellder
@@ -23,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         activity!.latitude = latitude
         activity!.longitude = longitude
         activity!.photo = nil
-        activity!.complete = false
+        activity!.complete = 0
         
         do {
             try managedObjectContext.save()

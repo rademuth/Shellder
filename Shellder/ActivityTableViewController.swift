@@ -74,7 +74,7 @@ class ActivityTableViewController: UITableViewController {
         
         cell.idLabel.text = activity.id?.stringValue
         cell.titleLabel.text = activity.title
-        cell.checkControl.checked = (activity.complete?.boolValue)!
+        //cell.checkControl.checked = (activity.complete?.integerValue)!
         
         return cell
     }
@@ -124,7 +124,7 @@ class ActivityTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowDetail" {
-            print("ShowDetail --> MapViewController")
+            print("ActivityTableViewController --> MapViewController")
             let navigationViewController = segue.destinationViewController as! UINavigationController
             let mapViewController = navigationViewController.viewControllers[0] as! MapViewController
 
@@ -137,7 +137,7 @@ class ActivityTableViewController: UITableViewController {
             }
         }
         else if segue.identifier == "AddItem" {
-            print("AddItem --> ActivityViewController")
+            print("ActivityTableViewController --> ActivityViewController")
             let navigationViewController = segue.destinationViewController as! UINavigationController
             let activityViewController = navigationViewController.viewControllers[0] as! ActivityViewController
             
@@ -148,18 +148,22 @@ class ActivityTableViewController: UITableViewController {
     
     @IBAction func unwindToActivityList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? ActivityViewController, activity = sourceViewController.activity {
-            print("Unwound from activity view controller")
+            print("ActivityViewController --> ActivityTableViewController")
             // Add a new activity.
             let newIndexPath = NSIndexPath(forRow: activities.count, inSection: 0)
             activities.append(activity)
             tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
         }
         if let sourceViewController = sender.sourceViewController as? MapViewController, activity = sourceViewController.activity {
-            print("Unwound from map view controller")
+            print("MapViewController --> ActivityTableViewController")
+            print("  - Complete: " + (activity.complete?.stringValue)!)
+//            print("
             // Update the table view cell
-            let oldIndexPath = NSIndexPath(forRow: (activity.id?.integerValue)!, inSection: 0)
-            activities[(activity.id?.integerValue)! - 1].complete = activity.complete
-            tableView.reloadRowsAtIndexPaths([oldIndexPath], withRowAnimation: .Automatic)
+//            let cellIdentifier = "ActivityTableViewCell"
+//            let oldIndexPath = NSIndexPath(forRow: (activity.id?.integerValue)! - 1, inSection: 0)
+//            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: oldIndexPath) as! ActivityTableViewCell
+//            cell.checkControl.checked = (activity.complete?.integerValue)!
+            
         }
     }
 

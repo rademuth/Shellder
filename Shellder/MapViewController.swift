@@ -9,8 +9,9 @@
 import UIKit
 import MapKit
 import CoreData
+import CoreLocation
 
-class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     
     // MARK: Properties
     
@@ -25,6 +26,8 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     var activity: Activity? = nil
     
+    var locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,17 +35,25 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         imageView.hidden = true
         mapView.hidden = false
         
-        print("MapViewController: viewDidLoad()")
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
+        self.mapView.showsUserLocation = true
         
         idLabel.text = activity?.id?.stringValue
         titleLabel.text = activity?.title
-        checkControl.checked = (activity?.complete?.boolValue)!
+        checkControl.checked = (activity?.complete?.integerValue)!
         
         if activity?.photo != nil {
-            print("Found a saved image")
             imageView.image = UIImage(data: (activity?.photo)!)
         } else {
-            print("Use the default photo")
+            
+        }
+        
+        if activity?.latitude?.doubleValue != 0 && activity?.longitude?.doubleValue != 0 {
+            let annotation = Annotation(coordinate: CLLocationCoordinate2D(latitude: (activity?.latitude?.doubleValue)!, longitude: (activity?.longitude?.doubleValue)!))
+            mapView.addAnnotation(annotation)
         }
         
     }
@@ -50,6 +61,20 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: Location Delegate Methods
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last
+        let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
+        self.mapView.setRegion(region, animated: true)
+        self.locationManager.stopUpdatingLocation()
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Errors: " + error.localizedDescription)
     }
     
     /*
