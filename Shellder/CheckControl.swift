@@ -30,6 +30,7 @@ class CheckControl: UIView {
         
         addSubview(button)
         
+        
     }
     
     override func layoutSubviews() {

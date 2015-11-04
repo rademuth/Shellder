@@ -74,7 +74,10 @@ class ActivityTableViewController: UITableViewController {
         
         cell.idLabel.text = activity.id?.stringValue
         cell.titleLabel.text = activity.title
-        //cell.checkControl.checked = (activity.complete?.integerValue)!
+        
+        cell.checkControl.checked = (activity.complete?.integerValue)!
+        cell.checkControl.updateCheckboxSelectionState()
+        
         
         return cell
     }
@@ -157,12 +160,10 @@ class ActivityTableViewController: UITableViewController {
         if let sourceViewController = sender.sourceViewController as? MapViewController, activity = sourceViewController.activity {
             print("MapViewController --> ActivityTableViewController")
             print("  - Complete: " + (activity.complete?.stringValue)!)
-//            print("
-            // Update the table view cell
-//            let cellIdentifier = "ActivityTableViewCell"
-//            let oldIndexPath = NSIndexPath(forRow: (activity.id?.integerValue)! - 1, inSection: 0)
-//            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: oldIndexPath) as! ActivityTableViewCell
-//            cell.checkControl.checked = (activity.complete?.integerValue)!
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                activities[selectedIndexPath.row] = activity
+                tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+            }
             
         }
     }
