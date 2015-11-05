@@ -43,7 +43,7 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         idLabel.text = activity?.id?.stringValue
         titleLabel.text = activity?.title
-        checkControl.checked = (activity?.complete?.integerValue)!
+        checkControl.checked = (activity?.complete?.boolValue)!
         
         if activity?.photo != nil {
             imageView.image = UIImage(data: (activity?.photo)!)

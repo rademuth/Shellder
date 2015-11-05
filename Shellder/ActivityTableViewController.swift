@@ -16,12 +16,13 @@ class ActivityTableViewController: UITableViewController {
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     var activities = [Activity]()
+    var deleteActivityIndexPath: NSIndexPath? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Use the edit button item provided by the table view controller.
-        navigationItem.leftBarButtonItem = editButtonItem()
+        // navigationItem.leftBarButtonItem = editButtonItem()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -46,6 +47,50 @@ class ActivityTableViewController: UITableViewController {
             }
         } catch let error as NSError {
             print(error)
+        }
+    }
+    
+    func confirmDelete() {
+        let alert = UIAlertController(title: "Delete Activity", message: "Are you sure you want to permanently delete this activity?", preferredStyle: .ActionSheet)
+        let DeleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: handleDeleteActivity)
+        let CancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: cancelDeleteActivity)
+        alert.addAction(DeleteAction)
+        alert.addAction(CancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func handleDeleteActivity(alertAction: UIAlertAction!) -> Void {
+        if let indexPath = deleteActivityIndexPath {
+            // Delete the row from the data source
+            managedObjectContext.deleteObject(activities[indexPath.row]) // Delete from core data
+            activities.removeAtIndex(indexPath.row) // Delete from array
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade) // Delete from table view
+            do {
+                try managedObjectContext.save()
+            } catch let error as NSError {
+                print("Failed to delete the old activity. Error = \(error)")
+            }
+            crunchActivityIds()
+        }
+    }
+    
+    func cancelDeleteActivity(alertAction: UIAlertAction!) {
+        deleteActivityIndexPath = nil
+    }
+    
+    func crunchActivityIds() {
+        //let nextIndexPath=NSIndexPath(forRow: indexPath.row + 1, inSection: indexPath.section);
+        if activities.count > 116 {
+            for i in 116...activities.count-1 {
+                activities[i].id = i+1
+                let indexPath = NSIndexPath(forRow: i, inSection: 0)
+                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+            }
+            do {
+                try managedObjectContext.save()
+            } catch let error as NSError {
+                print("Failed to delete the old activity. Error = \(error)")
+            }
         }
     }
     
@@ -75,9 +120,8 @@ class ActivityTableViewController: UITableViewController {
         cell.idLabel.text = activity.id?.stringValue
         cell.titleLabel.text = activity.title
         
-        cell.checkControl.checked = (activity.complete?.integerValue)!
+        cell.checkControl.checked = (activity.complete?.boolValue)!
         cell.checkControl.updateCheckboxSelectionState()
-        
         
         return cell
     }
@@ -91,17 +135,8 @@ class ActivityTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
-            managedObjectContext.deleteObject(activities[indexPath.row]) // Delete from core data
-            activities.removeAtIndex(indexPath.row) // Delete from array
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade) // Delete from table view
-            
-            do {
-                try managedObjectContext.save()
-            } catch let error as NSError{
-                print("Failed to delete the old activity. Error = \(error)")
-            }
-            
+            deleteActivityIndexPath = indexPath
+            confirmDelete()
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -164,7 +199,6 @@ class ActivityTableViewController: UITableViewController {
                 activities[selectedIndexPath.row] = activity
                 tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
             }
-            
         }
     }
 
