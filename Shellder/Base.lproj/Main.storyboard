@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qAr-MF-DWx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="umF-Dx-h3v">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -203,7 +203,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1875" y="31"/>
+            <point key="canvasLocation" x="2687" y="31"/>
         </scene>
         <!--Activities-->
         <scene sceneID="knx-tu-DkI">
@@ -278,25 +278,62 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="09y-pO-EGy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="269" y="355"/>
+            <point key="canvasLocation" x="1081" y="355"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Mf3-bZ-avA">
+        <!--Progress-->
+        <scene sceneID="PBc-uf-uBo">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qAr-MF-DWx" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FrR-ie-a9A">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <viewController id="QTn-LP-bH0" customClass="ProgressView" customModule="Shellder" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lPl-mF-7xh"/>
+                        <viewControllerLayoutGuide type="bottom" id="vdC-lo-Any"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QV4-eH-MAj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="pWy-5i-2ct">
+                                <rect key="frame" x="84" y="273" width="432" height="103"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2j1-J5-LJC">
+                                        <rect key="frame" x="182" y="0.0" width="68" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Y5v-mS-Pt5">
+                                        <rect key="frame" x="0.0" y="46" width="432" height="2"/>
+                                    </progressView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSe-wv-tIn">
+                                        <rect key="frame" x="199" y="73" width="34" height="30"/>
+                                        <state key="normal" title="Start"/>
+                                        <connections>
+                                            <segue destination="MK7-f9-rDJ" kind="show" id="Jyo-dp-Y4b"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Y5v-mS-Pt5" secondAttribute="trailing" id="EuP-kj-PyL"/>
+                                    <constraint firstItem="Y5v-mS-Pt5" firstAttribute="leading" secondItem="pWy-5i-2ct" secondAttribute="leading" id="I5n-Om-vDm"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pWy-5i-2ct" firstAttribute="centerX" secondItem="QV4-eH-MAj" secondAttribute="centerX" id="6iU-d1-xrJ"/>
+                            <constraint firstItem="pWy-5i-2ct" firstAttribute="leading" secondItem="QV4-eH-MAj" secondAttribute="leadingMargin" constant="64" id="enk-3K-pfe"/>
+                            <constraint firstItem="pWy-5i-2ct" firstAttribute="centerY" secondItem="QV4-eH-MAj" secondAttribute="centerY" id="m1g-Hb-IV0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Progress" id="eiy-BK-D5c"/>
                     <connections>
-                        <segue destination="MK7-f9-rDJ" kind="relationship" relationship="rootViewController" id="1Fu-jv-jwa"/>
+                        <outlet property="Label" destination="2j1-J5-LJC" id="cNQ-VW-dpj"/>
+                        <outlet property="Progress" destination="Y5v-mS-Pt5" id="P1z-hY-27g"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lrL-FG-djp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vJp-Ir-bq3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-469" y="355"/>
+            <point key="canvasLocation" x="-105" y="-389"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ctB-hV-U2Q">
@@ -332,7 +369,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mjx-f9-CSx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1063" y="31"/>
+            <point key="canvasLocation" x="1875" y="31"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="b8j-oW-8jd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="umF-Dx-h3v" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tef-Iz-6d0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="QTn-LP-bH0" kind="relationship" relationship="rootViewController" id="lu3-Hc-cPd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5W9-MR-b9H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-955" y="-225"/>
         </scene>
     </scenes>
     <resources>
