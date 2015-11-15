@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3AAB8FC41BF63DAC004598EE /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAB8FC31BF63DAC004598EE /* ProgressView.swift */; };
+		3AAB8FC41BF63DAC004598EE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAB8FC31BF63DAC004598EE /* HomeView.swift */; };
 		3E6EACA81BE170390036AAEF /* Shellder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EACA61BE170390036AAEF /* Shellder.xcdatamodeld */; };
 		3E71B5DE1BD6CD690011353C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E71B5DD1BD6CD690011353C /* AppDelegate.swift */; };
 		3E71B5E31BD6CD6A0011353C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E71B5E11BD6CD6A0011353C /* Main.storyboard */; };
@@ -25,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3AAB8FC31BF63DAC004598EE /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		3AAB8FC31BF63DAC004598EE /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3E6EACA71BE170390036AAEF /* Shellder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shellder.xcdatamodel; sourceTree = "<group>"; };
 		3E71B5DA1BD6CD690011353C /* Shellder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shellder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E71B5DD1BD6CD690011353C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,7 +81,7 @@
 				3E71B5DD1BD6CD690011353C /* AppDelegate.swift */,
 				3E6EACA61BE170390036AAEF /* Shellder.xcdatamodeld */,
 				3E71B5E11BD6CD6A0011353C /* Main.storyboard */,
-				3AAB8FC31BF63DAC004598EE /* ProgressView.swift */,
+				3AAB8FC31BF63DAC004598EE /* HomeView.swift */,
 				3ECB4F701BDD24030000A61F /* ActivityTableViewController.swift */,
 				3E71B5E41BD6CD6A0011353C /* Assets.xcassets */,
 				3E71B5E61BD6CD6A0011353C /* LaunchScreen.storyboard */,
@@ -170,7 +170,7 @@
 				3EDAB1931BE807AE00B1B26F /* Activity+CoreDataProperties.swift in Sources */,
 				3ECB4F711BDD24030000A61F /* ActivityTableViewController.swift in Sources */,
 				3EDAB1961BE81EA100B1B26F /* CheckControl.swift in Sources */,
-				3AAB8FC41BF63DAC004598EE /* ProgressView.swift in Sources */,
+				3AAB8FC41BF63DAC004598EE /* HomeView.swift in Sources */,
 				3ECB4F6F1BDD1F870000A61F /* ActivityTableViewCell.swift in Sources */,
 				3E71B5F01BD6D7CD0011353C /* MapViewController.swift in Sources */,
 				3E6EACA81BE170390036AAEF /* Shellder.xcdatamodeld in Sources */,

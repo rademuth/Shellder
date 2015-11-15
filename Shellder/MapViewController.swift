@@ -18,6 +18,7 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    //@IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var checkControl: CheckControl!

@@ -60,6 +60,25 @@ class ActivityViewController: UIViewController, UITextFieldDelegate {
         // Disable the Save button if the text field is empty.
         let title = titleTextField.text ?? ""
         saveButton.enabled = !title.isEmpty
+        
+        // Check that the other fields contain valid numbers
+        let xCoorText = NSString(string: xCoorTextField.text ?? "")
+        let yCoorText = NSString(string: yCoorTextField.text ?? "")
+        
+        if xCoorText.length != 0 {
+            let xNum = xCoorText.floatValue
+            if xNum == 0 {
+                saveButton.enabled = false
+            }
+        }
+        
+        if yCoorText.length != 0 {
+            let yNum = yCoorText.floatValue
+            if yNum == 0 {
+                saveButton.enabled = false
+            }
+        }
+        
     }
     
     // MARK: Navigation
