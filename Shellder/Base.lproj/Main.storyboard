@@ -29,7 +29,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter title." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ufv-op-Im0">
                                         <rect key="frame" x="0.0" y="33" width="560" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coordinates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxy-0l-Ta0">
                                         <rect key="frame" x="0.0" y="75" width="93" height="21"/>
@@ -40,19 +40,19 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="143" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter latitude." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BOF-B5-Yic">
                                         <rect key="frame" x="0.0" y="108" width="560" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="25" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter longitude." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ipc-mh-RIB">
                                         <rect key="frame" x="0.0" y="150" width="560" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Ufv-op-Im0" firstAttribute="leading" secondItem="0hJ-OG-U4J" secondAttribute="leading" id="1G7-of-hkX"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ufv-op-Im0" secondAttribute="trailing" id="3hS-qy-d8j"/>
-                                    <constraint firstAttribute="trailing" secondItem="ipc-mh-RIB" secondAttribute="trailing" id="Rf3-by-7l4"/>
-                                    <constraint firstAttribute="trailing" secondItem="BOF-B5-Yic" secondAttribute="trailing" id="eUG-8u-zS7"/>
+                                    <constraint firstItem="Ufv-op-Im0" firstAttribute="trailing" secondItem="0hJ-OG-U4J" secondAttribute="trailing" id="3hS-qy-d8j"/>
+                                    <constraint firstItem="ipc-mh-RIB" firstAttribute="trailing" secondItem="0hJ-OG-U4J" secondAttribute="trailing" id="Rf3-by-7l4"/>
+                                    <constraint firstItem="BOF-B5-Yic" firstAttribute="trailing" secondItem="0hJ-OG-U4J" secondAttribute="trailing" id="eUG-8u-zS7"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -100,6 +100,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ked-6u-tZZ" userLabel="ID Label">
+                                <rect key="frame" x="20" y="93" width="35" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="msq-hf-VdU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEv-KO-ftn">
                                 <rect key="frame" x="63" y="72" width="479" height="63"/>
                                 <string key="text">Insert a really long title here and make sure it word wraps properly by displaying on multiple lines. Ideally, the text should default to three lines, but in certain situations it should shrink.</string>
@@ -139,15 +148,6 @@
                                     <action selector="indexChanged:" destination="53W-Jd-cVS" eventType="valueChanged" id="a1s-z8-kmn"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ked-6u-tZZ" userLabel="ID Label">
-                                <rect key="frame" x="20" y="93" width="35" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="35" id="msq-hf-VdU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -281,7 +281,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="09y-pO-EGy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1153" y="31"/>
+            <point key="canvasLocation" x="1184" y="31"/>
         </scene>
         <!--Home-->
         <scene sceneID="PBc-uf-uBo">
@@ -295,22 +295,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="536" image="rotunda" translatesAutoresizingMaskIntoConstraints="NO" id="89i-Lp-CtD">
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="536" image="rotunda" translatesAutoresizingMaskIntoConstraints="NO" id="89i-Lp-CtD">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="19K-Hf-2rp">
-                                <rect key="frame" x="20" y="265" width="561" height="69"/>
+                                <rect key="frame" x="20" y="265" width="560" height="69"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress - 72%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2j1-J5-LJC">
-                                        <rect key="frame" x="222" y="0.0" width="117" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Completed 42 of 116 Activities" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2j1-J5-LJC">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Y5v-mS-Pt5">
-                                        <rect key="frame" x="0.0" y="29" width="561" height="2"/>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Y5v-mS-Pt5">
+                                        <rect key="frame" x="0.0" y="29" width="560" height="2"/>
+                                        <color key="progressTintColor" red="0.9882352941176471" green="0.67843137254901964" blue="0.090196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                     </progressView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSe-wv-tIn">
-                                        <rect key="frame" x="264" y="39" width="34" height="30"/>
+                                        <rect key="frame" x="263" y="39" width="34" height="30"/>
                                         <state key="normal" title="Start"/>
                                         <connections>
                                             <segue destination="MK7-f9-rDJ" kind="show" id="Jyo-dp-Y4b"/>
@@ -318,27 +319,43 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Y5v-mS-Pt5" firstAttribute="leading" secondItem="19K-Hf-2rp" secondAttribute="leading" id="V9W-SN-P92"/>
+                                    <constraint firstItem="2j1-J5-LJC" firstAttribute="centerX" secondItem="19K-Hf-2rp" secondAttribute="centerX" id="30a-ZD-9xU"/>
+                                    <constraint firstItem="Y5v-mS-Pt5" firstAttribute="leading" secondItem="2j1-J5-LJC" secondAttribute="leading" id="KM5-Vv-L0t"/>
+                                    <constraint firstItem="Y5v-mS-Pt5" firstAttribute="trailing" secondItem="2j1-J5-LJC" secondAttribute="trailing" id="rQz-aE-PEA"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" text="UVA Bucket List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vuz-pb-dll">
-                                <rect key="frame" x="173" y="150" width="254" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="254" id="ZWe-0a-Whu"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                            <view alpha="0.0" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e9P-BX-jw4">
+                                <rect key="frame" x="253" y="192" width="95" height="65"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view alpha="0.0" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DpK-Kl-b26">
+                                <rect key="frame" x="253" y="72" width="95" height="65"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" text="UVA Bucket List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vuz-pb-dll">
+                                <rect key="frame" x="158" y="145" width="285" height="39"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="DpK-Kl-b26" firstAttribute="top" secondItem="lPl-mF-7xh" secondAttribute="bottom" constant="8" id="4dE-ic-IaT"/>
+                            <constraint firstItem="89i-Lp-CtD" firstAttribute="top" secondItem="lPl-mF-7xh" secondAttribute="bottom" id="6Ok-pi-yZa"/>
+                            <constraint firstItem="DpK-Kl-b26" firstAttribute="centerX" secondItem="QV4-eH-MAj" secondAttribute="centerX" id="6wj-2S-Zlb"/>
                             <constraint firstItem="19K-Hf-2rp" firstAttribute="leading" secondItem="QV4-eH-MAj" secondAttribute="leadingMargin" id="7IQ-Pr-dif"/>
-                            <constraint firstItem="vuz-pb-dll" firstAttribute="centerX" secondItem="89i-Lp-CtD" secondAttribute="centerX" id="Gd1-bw-4D5"/>
-                            <constraint firstItem="vuz-pb-dll" firstAttribute="centerX" secondItem="19K-Hf-2rp" secondAttribute="centerX" id="HRI-03-TYs"/>
+                            <constraint firstItem="e9P-BX-jw4" firstAttribute="bottom" secondItem="19K-Hf-2rp" secondAttribute="top" constant="-8" id="B50-tt-ZJ6"/>
+                            <constraint firstItem="89i-Lp-CtD" firstAttribute="leading" secondItem="QV4-eH-MAj" secondAttribute="leading" id="C9n-yR-Bn9"/>
+                            <constraint firstItem="vuz-pb-dll" firstAttribute="top" secondItem="DpK-Kl-b26" secondAttribute="bottom" constant="8" id="D7H-jJ-CGC"/>
+                            <constraint firstItem="DpK-Kl-b26" firstAttribute="height" secondItem="e9P-BX-jw4" secondAttribute="height" id="DXF-CI-DWP"/>
                             <constraint firstItem="19K-Hf-2rp" firstAttribute="centerY" secondItem="QV4-eH-MAj" secondAttribute="centerY" id="MAS-Y8-OFT"/>
-                            <constraint firstItem="vuz-pb-dll" firstAttribute="top" secondItem="lPl-mF-7xh" secondAttribute="bottom" constant="86" id="OHk-hX-dkZ"/>
-                            <constraint firstItem="19K-Hf-2rp" firstAttribute="top" secondItem="vuz-pb-dll" secondAttribute="bottom" constant="75" id="Vnx-hX-zBV"/>
+                            <constraint firstItem="vuz-pb-dll" firstAttribute="bottom" secondItem="e9P-BX-jw4" secondAttribute="top" constant="-8" id="S1s-58-bD3"/>
+                            <constraint firstItem="vuz-pb-dll" firstAttribute="centerX" secondItem="QV4-eH-MAj" secondAttribute="centerX" id="SHt-Kx-wqd"/>
+                            <constraint firstItem="e9P-BX-jw4" firstAttribute="centerX" secondItem="QV4-eH-MAj" secondAttribute="centerX" id="Xez-l6-IsI"/>
+                            <constraint firstItem="19K-Hf-2rp" firstAttribute="trailing" secondItem="QV4-eH-MAj" secondAttribute="trailingMargin" id="bk5-fe-rfS"/>
                             <constraint firstItem="19K-Hf-2rp" firstAttribute="centerX" secondItem="QV4-eH-MAj" secondAttribute="centerX" id="ffN-d8-Vg6"/>
+                            <constraint firstItem="89i-Lp-CtD" firstAttribute="trailing" secondItem="QV4-eH-MAj" secondAttribute="trailing" id="loc-En-7xM"/>
+                            <constraint firstItem="89i-Lp-CtD" firstAttribute="bottom" secondItem="vdC-lo-Any" secondAttribute="top" id="sEi-tk-i4U"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="eiy-BK-D5c"/>
@@ -405,9 +422,26 @@
             </objects>
             <point key="canvasLocation" x="-295" y="31"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="2Vm-49-QdN">
+            <objects>
+                <viewController id="IxZ-fr-uvf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iIU-jk-KwU"/>
+                        <viewControllerLayoutGuide type="bottom" id="DNB-uS-AEF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vf8-pw-wdH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8RT-yJ-1bm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="defaultPhoto" width="540" height="540"/>
-        <image name="rotunda" width="512" height="343"/>
+        <image name="rotunda" width="1932" height="1294"/>
     </resources>
 </document>

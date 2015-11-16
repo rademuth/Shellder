@@ -70,7 +70,7 @@ class HomeView: UIViewController {
     }
     
     func confirmDelete() {
-        let alert = UIAlertController(title: "Reset Progress", message: "Are you sure you want to permanently reset your progress?", preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: "Reset Progress", message: "Are you sure you want to permanently reset your progress? This will also remove all saved photos from the application.", preferredStyle: .ActionSheet)
         let DeleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: handleDeleteProgress)
         let CancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: cancelDeleteActivity)
         alert.addAction(DeleteAction)
@@ -94,6 +94,7 @@ class HomeView: UIViewController {
                 activity.complete = 0
                 
                 // Delete the photo
+                activity.photo = nil
                 
             }
         } catch let error as NSError {
