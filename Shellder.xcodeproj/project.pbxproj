@@ -15,6 +15,9 @@
 		3E71B5E81BD6CD6A0011353C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E71B5E61BD6CD6A0011353C /* LaunchScreen.storyboard */; };
 		3E71B5F01BD6D7CD0011353C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E71B5EF1BD6D7CD0011353C /* MapViewController.swift */; };
 		3E71B5F21BD6DB800011353C /* OldActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E71B5F11BD6DB800011353C /* OldActivity.swift */; };
+		3EA34FBA1BFD2BE8001DC98F /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA34FB91BFD2BE8001DC98F /* ScoreTableViewCell.swift */; };
+		3EA34FBC1BFD2CA2001DC98F /* ScoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA34FBB1BFD2CA2001DC98F /* ScoreTableViewController.swift */; };
+		3EA34FBE1BFD30DE001DC98F /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA34FBD1BFD30DE001DC98F /* Score.swift */; };
 		3ECB4F6F1BDD1F870000A61F /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECB4F6E1BDD1F870000A61F /* ActivityTableViewCell.swift */; };
 		3ECB4F711BDD24030000A61F /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECB4F701BDD24030000A61F /* ActivityTableViewController.swift */; };
 		3ECB4F731BDD355D0000A61F /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECB4F721BDD355D0000A61F /* ActivityViewController.swift */; };
@@ -35,6 +38,9 @@
 		3E71B5E91BD6CD6A0011353C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E71B5EF1BD6D7CD0011353C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3E71B5F11BD6DB800011353C /* OldActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldActivity.swift; sourceTree = "<group>"; };
+		3EA34FB91BFD2BE8001DC98F /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
+		3EA34FBB1BFD2CA2001DC98F /* ScoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewController.swift; sourceTree = "<group>"; };
+		3EA34FBD1BFD30DE001DC98F /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		3ECB4F6E1BDD1F870000A61F /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		3ECB4F701BDD24030000A61F /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
 		3ECB4F721BDD355D0000A61F /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +87,9 @@
 				3E71B5DD1BD6CD690011353C /* AppDelegate.swift */,
 				3E6EACA61BE170390036AAEF /* Shellder.xcdatamodeld */,
 				3E71B5E11BD6CD6A0011353C /* Main.storyboard */,
+				3EA34FBD1BFD30DE001DC98F /* Score.swift */,
+				3EA34FBB1BFD2CA2001DC98F /* ScoreTableViewController.swift */,
+				3EA34FB91BFD2BE8001DC98F /* ScoreTableViewCell.swift */,
 				3AAB8FC31BF63DAC004598EE /* HomeView.swift */,
 				3ECB4F701BDD24030000A61F /* ActivityTableViewController.swift */,
 				3E71B5E41BD6CD6A0011353C /* Assets.xcassets */,
@@ -169,12 +178,15 @@
 				3ECB4F731BDD355D0000A61F /* ActivityViewController.swift in Sources */,
 				3EDAB1931BE807AE00B1B26F /* Activity+CoreDataProperties.swift in Sources */,
 				3ECB4F711BDD24030000A61F /* ActivityTableViewController.swift in Sources */,
+				3EA34FBE1BFD30DE001DC98F /* Score.swift in Sources */,
 				3EDAB1961BE81EA100B1B26F /* CheckControl.swift in Sources */,
 				3AAB8FC41BF63DAC004598EE /* HomeView.swift in Sources */,
 				3ECB4F6F1BDD1F870000A61F /* ActivityTableViewCell.swift in Sources */,
 				3E71B5F01BD6D7CD0011353C /* MapViewController.swift in Sources */,
+				3EA34FBC1BFD2CA2001DC98F /* ScoreTableViewController.swift in Sources */,
 				3E6EACA81BE170390036AAEF /* Shellder.xcdatamodeld in Sources */,
 				3EDAB1941BE807AE00B1B26F /* Activity.swift in Sources */,
+				3EA34FBA1BFD2BE8001DC98F /* ScoreTableViewCell.swift in Sources */,
 				3EED08F81BE99C9C007684DA /* Annotation.swift in Sources */,
 				3E71B5DE1BD6CD690011353C /* AppDelegate.swift in Sources */,
 			);
