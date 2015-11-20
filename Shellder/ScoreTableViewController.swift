@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ScoreTableViewController: UITableViewController {
 
@@ -15,6 +16,7 @@ class ScoreTableViewController: UITableViewController {
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     var scores = [Score]()
+    var name: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +30,78 @@ class ScoreTableViewController: UITableViewController {
         loadSavedScores()
     }
     
-    func loadSavedScores() {
+    func configurationTextField(textField: UITextField!){
+        textField.placeholder = "Enter your name"
+        name = textField
+    }
+    
+    @IBAction func AddClick(sender: UIBarButtonItem) {
+        var alert = UIAlertController(title: "Add a Score", message: "", preferredStyle: .Alert)
         
+        alert.addTextFieldWithConfigurationHandler(configurationTextField)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: handleCancel))
+        alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler: handleAddProgress))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    func handleAddProgress(alertAction: UIAlertAction!){
+        var finished = 0
+        let fetchRequest = NSFetchRequest(entityName: "Activity")
+        let idSort = NSSortDescriptor(key: "id", ascending: true)
+        fetchRequest.sortDescriptors = [idSort]
+        
+        // Execute the fetch request on the context
+        do {
+            let savedActivities = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Activity]
+            for index in 0...115{
+                let activity = savedActivities[index]
+                if (activity.complete == 1) {
+                    finished++
+                }
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+
+        
+        let postEndpoint: String = "https://serene-eyrie-6791.herokuapp.com/app/add/" + String(name.text!) + "/" + String(finished)
+        print(postEndpoint)
+        guard let url = NSURL(string: postEndpoint) else {
+            print("Error: cannot create URL")
+            return
+        }
+        let urlRequest = NSURLRequest(URL: url)
+        
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: config)
+        
+        let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
+            
+            // Do stuff with the response here
+            guard let responseData = data else {
+                print("Error: did not receive data")
+                return
+            }
+            guard error == nil else {
+                print("error calling GET on /view/")
+                print(error)
+                return
+            }
+            
+            // parse the result as JSON, since that's what the API provides
+            self.loadSavedScores()
+        })
+        task.resume()
+    }
+    
+    func handleCancel(alertAction: UIAlertAction!){
+        
+    }
+    
+    func loadSavedScores() {
+        self.scores.removeAll()
         let postEndpoint: String = "https://serene-eyrie-6791.herokuapp.com/app/view/"
         guard let url = NSURL(string: postEndpoint) else {
             print("Error: cannot create URL")
