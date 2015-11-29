@@ -11,14 +11,13 @@ import MapKit
 import CoreData
 import CoreLocation
 
-class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     
     // MARK: Properties
     
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    //@IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var checkControl: CheckControl!
@@ -105,6 +104,9 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         // Set photoImageView to display the selected image.
         imageView.image = selectedImage
+        
+        // Save the image to the Camera Roll
+        UIImageWriteToSavedPhotosAlbum(selectedImage, nil, nil, nil)
         
         // Dismiss the picker.
         dismissViewControllerAnimated(true, completion: nil)

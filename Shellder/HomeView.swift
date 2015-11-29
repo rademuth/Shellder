@@ -29,11 +29,8 @@ class HomeView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib
-        //loadSavedActivities()
-        //Progress.progress = Float(finished)/Float(total)
-        
     }
+    
     override func viewWillAppear(animated: Bool) {
         finished = 0
         total = 0

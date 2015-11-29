@@ -16,92 +16,51 @@ class ScoreTableViewController: UITableViewController {
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     var scores = [Score]()
-    var name: UITextField!
+    var nameField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        loadSavedScores()
+        self.refreshControl?.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        updateScores()
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        updateScores()
     }
     
     func configurationTextField(textField: UITextField!){
         textField.placeholder = "Enter your name"
-        name = textField
+        nameField = textField
     }
     
-    @IBAction func AddClick(sender: UIBarButtonItem) {
-        var alert = UIAlertController(title: "Add a Score", message: "", preferredStyle: .Alert)
+    @IBAction func addClicked(sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Add a Score", message: "", preferredStyle: .Alert)
         
         alert.addTextFieldWithConfigurationHandler(configurationTextField)
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: handleCancel))
-        alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler: handleAddProgress))
+        alert.addAction(UIAlertAction(title: "Add", style: UIAlertActionStyle.Default, handler: handleAddProgress))
         
         self.presentViewController(alert, animated: true, completion: nil)
-        
     }
     
+    
     func handleAddProgress(alertAction: UIAlertAction!){
-        var finished = 0
-        let fetchRequest = NSFetchRequest(entityName: "Activity")
-        let idSort = NSSortDescriptor(key: "id", ascending: true)
-        fetchRequest.sortDescriptors = [idSort]
-        
-        // Execute the fetch request on the context
-        do {
-            let savedActivities = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Activity]
-            for index in 0...115{
-                let activity = savedActivities[index]
-                if (activity.complete == 1) {
-                    finished++
-                }
-            }
-        } catch let error as NSError {
-            print(error)
-        }
-
-        
-        let postEndpoint: String = "https://serene-eyrie-6791.herokuapp.com/app/add/" + String(name.text!) + "/" + String(finished)
-        print(postEndpoint)
-        guard let url = NSURL(string: postEndpoint) else {
-            print("Error: cannot create URL")
-            return
-        }
-        let urlRequest = NSURLRequest(URL: url)
-        
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: config)
-        
-        let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
-            
-            // Do stuff with the response here
-            guard let responseData = data else {
-                print("Error: did not receive data")
-                return
-            }
-            guard error == nil else {
-                print("error calling GET on /view/")
-                print(error)
-                return
-            }
-            
-            // parse the result as JSON, since that's what the API provides
-            self.loadSavedScores()
-        })
-        task.resume()
+        addScore()
     }
     
     func handleCancel(alertAction: UIAlertAction!){
         
     }
     
-    func loadSavedScores() {
+    func updateScores() {
+        // Remove old scores from the array
         self.scores.removeAll()
+        
+        // Create a request to the web service
         let postEndpoint: String = "https://serene-eyrie-6791.herokuapp.com/app/view/"
         guard let url = NSURL(string: postEndpoint) else {
             print("Error: cannot create URL")
@@ -114,31 +73,29 @@ class ScoreTableViewController: UITableViewController {
         
         let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
             
-            // Do stuff with the response here
             guard let responseData = data else {
                 print("Error: did not receive data")
                 return
             }
             guard error == nil else {
-                print("error calling GET on /view/")
+                print("Error: error calling GET on /view/")
                 print(error)
                 return
             }
             
-            // parse the result as JSON, since that's what the API provides
+            // Parse the result as JSON
             let online_scores: [NSDictionary]
             do {
                 online_scores = try NSJSONSerialization.JSONObjectWithData(responseData,
                     options: []) as! [NSDictionary]
             } catch  {
-                print("error trying to convert data to JSON")
+                print("Error: error trying to convert data to JSON")
                 return
             }
             
-            // now we have the scores, let's just print them to prove we can access it
-            print("The scores are: " + online_scores.description)
+            //print("The scores are: " + online_scores.description)
             
-            // the post object is an array of dictionaries
+            // The post object is an array of dictionaries
             for online_score in online_scores {
                 if let fields = online_score["fields"] as? NSDictionary {
                     if let name = fields["name"] as? String {
@@ -154,10 +111,66 @@ class ScoreTableViewController: UITableViewController {
             // Reload the table view when the data has finished downloading
             self.scores.sortInPlace({ $0.completed > $1.completed })
             self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
             
         })
+        
+        // Issue the request
         task.resume()
         
+    }
+    
+    func addScore() {
+        // Compute the number of completed activities
+        var finished = 0
+        let fetchRequest = NSFetchRequest(entityName: "Activity")
+        let idSort = NSSortDescriptor(key: "id", ascending: true)
+        fetchRequest.sortDescriptors = [idSort]
+        do {
+            let savedActivities = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Activity]
+            for index in 0...115{
+                let activity = savedActivities[index]
+                if (activity.complete == 1) {
+                    finished++
+                }
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        // Create a request to the web service
+        let postEndpoint: String = "https://serene-eyrie-6791.herokuapp.com/app/add/" + String(nameField.text!) + "/" + String(finished)
+        print(postEndpoint)
+        guard let url = NSURL(string: postEndpoint) else {
+            print("Error: cannot create URL")
+            return
+        }
+        let urlRequest = NSURLRequest(URL: url)
+        
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: config)
+        
+        let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
+            
+            guard let responseData = data else {
+                print("Error: did not receive data")
+                return
+            }
+            guard error == nil else {
+                print("error calling GET on /view/")
+                print(error)
+                return
+            }
+            
+        })
+        
+        // Issue the request
+        task.resume()
+        
+        // Add the score locally to the array and reload the table view
+        self.scores.append(Score(name: self.nameField.text!, completed: finished))
+        self.scores.sortInPlace({ $0.completed > $1.completed })
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

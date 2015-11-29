@@ -164,14 +164,14 @@ class ActivityTableViewController: UITableViewController {
         if segue.identifier == "ShowDetail" {
             print("ActivityTableViewController --> MapViewController")
             let navigationViewController = segue.destinationViewController as! UINavigationController
-            let mapViewController = navigationViewController.viewControllers[0] as! MapViewController
+            let detailViewController = navigationViewController.viewControllers[0] as! DetailViewController
 
             // Get the cell that generated this segue.
             if let selectedActivityCell = sender as? ActivityTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedActivityCell)!
                 let selectedActivity = activities[indexPath.row]
                 // Set the activity in the MapViewController
-                mapViewController.activity = selectedActivity
+                detailViewController.activity = selectedActivity
             }
         }
         else if segue.identifier == "AddItem" {
@@ -192,7 +192,7 @@ class ActivityTableViewController: UITableViewController {
             activities.append(activity)
             tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
         }
-        if let sourceViewController = sender.sourceViewController as? MapViewController, activity = sourceViewController.activity {
+        if let sourceViewController = sender.sourceViewController as? DetailViewController, activity = sourceViewController.activity {
             print("MapViewController --> ActivityTableViewController")
             print("  - Complete: " + (activity.complete?.stringValue)!)
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
